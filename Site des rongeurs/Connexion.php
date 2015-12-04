@@ -11,33 +11,42 @@ return $chaine;
 
 if (isset($_POST['user'])) 
 {
-
+	 $hostname = "localhost";
+			 $database = "rongeurs";
+			 $username = "root";
+			 $password = "";
+		
+			try {
+				$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");
+			} catch (Exception $e) {
+				die('Erreur : ' . $e->getMessage());
+			}
+			 var_dump($maBD);
+			 echo "<br/>";
+			 
     $user = (isset($_POST['user']) && trim($_POST['user']) != '')? Verif_magicquotes($_POST['user']) : null;
     $password = (isset($_POST['password']) && trim($_POST['password']) != '')? Verif_magicquotes($_POST['password']) : null;
-    
-
+    echo "User:: ".$user."<br/>";
+	echo "Pass:: ".$password."<br/>";
+	
     if(isset($user,$password)) 
     {
-         $hostname = "adresse du serveur";
-         $database = "nom de la bdd";
-         $username = "user de la bdd";
-         $password = "password de l'user de la bdd";
-    
-         $connection = mysql_connect($hostname, $username, $password) or die(mysql_error());
+        
+		
+    //     $connection = mysql_connect($hostname, $username, $password) or die(mysql_error());
 
-         mysql_select_db($database, $connection);
+    //     mysql_select_db($database, $connection);
     
-         $nom = mysql_real_escape_string($user);
-         $password = mysql_real_escape_string($password);
+         $nom = $_POST['user'];
+         $pass = $_POST['password'];
     
     
-         $requete = "SELECT * FROM membres WHERE user = '".$nom."' AND password = '".$password."'";  
-    
-         $req_exec = mysql_query($requete) or die(mysql_error());
-    
-         $resultat = mysql_fetch_assoc($req_exec); 
-
-         if (isset($resultat['user'],$resultat['password']))  
+         $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")-fetchColumn();  
+		
+		var_dump($requete);
+		echo "====> $requete<br/>";
+		
+         if (isset($nom,$pass))  
                {
                  session_start();
                  $_SESSION['login'] = $user;

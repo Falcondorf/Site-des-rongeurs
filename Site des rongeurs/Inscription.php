@@ -1,5 +1,4 @@
 <?php
- session_start();
 // On crée une fonction pour éviter que ce soit le boxon avec les magic quotes
 
 function Verif_magicquotes ($chaine) 
@@ -10,9 +9,9 @@ return $chaine;
 } 
 
 // On gère l'envoie des données vers la bdd en vérifiant que les champs sont bien remplis
-		$hostname = "192.168.7.33";
+		$hostname = "localhost";
         $database = "rongeurs";
-        $username = "simpleUser";
+        $username = "root";
         $password = "";
 		try {
 			$maBD = new PDO("mysql:host=$hostname;dbname=$database", "$username", "$password");
@@ -37,9 +36,8 @@ if (isset($_POST['user']))
          {
              $insertion = $maBD->query("INSERT INTO users(usrName,password) VALUES('$user', '$password')");
 
-                
-                 $_SESSION['login'] = $user;
-				 
+                $_SESSION['login'] = $user;
+				 session_start();
 				 $message = "Vous vous êtes bien inscrit, merci!";
                  header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
             // }    
