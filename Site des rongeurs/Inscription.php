@@ -38,19 +38,22 @@ if (isset($_POST['user']))
 
                 $_SESSION['login'] = $user;
 				 session_start();
-				 $message = "Vous vous êtes bien inscrit, merci!";
+				 //$message = "Vous vous êtes bien inscrit, merci!";
+				 $message = "0";
                  header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
             // }    
          }
          else
          {
-             $message = 'Ce pseudo est déjà utilisé, changez-le.';
+             //$message = 'Ce pseudo est déjà utilisé, changez-le.';
+			 $message = "1";
 			 header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
 		 }
     }
     else 
     {
-		 $message = 'Les champs "User" et "Mot de passe" doivent être remplis.';
+		// $message = 'Les champs "User" et "Mot de passe" doivent être remplis.';
+		 $message = "2";
         header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
     }
 }

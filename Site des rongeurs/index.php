@@ -27,7 +27,9 @@
 </head>
 
 <body>
-
+	<?php
+		session_start();
+	?>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -39,7 +41,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Acceuil</a>
+                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Acceuil</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -140,17 +142,51 @@
 
                 <!-- Well Bloc de connexion -->
                 <div class="well">
-                    <p>
-						    <form action = "http://localhost/Site%20des%20rongeurs/Inscription.php" method = "post">
-								<h4>Inscription/Connexion</h4>
-								<p><label for = "user">User : </label><input type = "text" name = "user" id = "user" /></p>
-								<p><label for = "password">Mot de passe : </label><input type = "password" name = "password" id = "password" /></p>
-								<p><input type = "submit" value = "Inscription" id = "valider" /></p>
+                  
+				<?php
+					if ($_SESSION['user_logged'] == false){
+						 echo '<form action = "http://localhost/Site%20des%20rongeurs/Connexion.php" method="post">
+							<h4>Connexion</h4>
+							<p><label for = "user">User : </label><input type="text" name="user" id="user" /></p>
+							<p><label for = "password">Mot de passe : </label><input type="password" name="password" id="password" /></p>
+							<p><input type="submit" value="Se connecter" id = "valider" /></p>
 							</form>
-							<p size="5px"><a href="#">Inscrivez-vous par ici.</a></p>
-						<p id = "message"><?php if(isset($_GET['confirm'])) echo $_GET['confirm']; ?></p>
-
+							<p size="5px"><a href="index-inscr.php">Inscrivez-vous par ici.</a></p>
+							
+						<p id = "message">';
+					
+						if(isset($_GET['confirm'])){
+							if($_GET['confirm'] == "0"){
+								echo 'Merci de vous être connecté '.$_SESSION['login'];
+							}else{
+								if ($_GET['confirm'] == "1"){
+									echo 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
+								}else{
+									echo 'Les champs User et Mot de passe doivent être remplis.';
+								}
+							}
+						}
+					
+					}else{
+						echo 'Vous êtes connecté en tant que '.$_SESSION['login'];
+						//ajouter bouton de déco
+					}
+				?>
 					</p>
+						<?php 
+							if(isset($_GET['confirm'])){
+								if($_GET['confirm'] == "2"){
+									echo "Les champs \"User\" et \"Mot de passe\" doivent être remplis.";
+								}else{
+									if($_GET['confirm'] == "1"){
+										echo "Ce pseudo est déjà utilisé, changez-le.";
+									}else {
+										echo "Vous vous êtes bien inscrit, merci!";
+									}
+								}
+							}
+						?></p>
+					</p> -->
                 </div>
 <!-- Blog Categories Well -->
                 <div class="well">

@@ -21,51 +21,45 @@ if (isset($_POST['user']))
 			} catch (Exception $e) {
 				die('Erreur : ' . $e->getMessage());
 			}
-			 var_dump($maBD);
-			 echo "<br/>";
 			 
     $user = (isset($_POST['user']) && trim($_POST['user']) != '')? Verif_magicquotes($_POST['user']) : null;
     $password = (isset($_POST['password']) && trim($_POST['password']) != '')? Verif_magicquotes($_POST['password']) : null;
-    echo "User:: ".$user."<br/>";
-	echo "Pass:: ".$password."<br/>";
 	
     if(isset($user,$password)) 
     {
-        
-		
-    //     $connection = mysql_connect($hostname, $username, $password) or die(mysql_error());
-
-    //     mysql_select_db($database, $connection);
     
          $nom = $_POST['user'];
          $pass = $_POST['password'];
     
     
-         $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")-fetchColumn();  
+         $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")->fetchColumn(); 
 		
-		var_dump($requete);
-		echo "====> $requete<br/>";
-		
-         if (isset($nom,$pass))  
+         if ($requete)  
                {
                  session_start();
                  $_SESSION['login'] = $user;
             
-                 $message = 'Bonjour '.htmlspecialchars($_SESSION['login']).' <a href = "adresse de la page suivante">Cliquez ici pour vous connecter</a>';
+                 //$message = 'Bonjour '.htmlspecialchars($_SESSION['login']).' <a href = "adresse de la page suivante">Cliquez ici pour vous connecter</a>';
+				 $message = "0";
+                 header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
                 }
                 else
                 {
-                $message = 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
+                //$message = 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
+				$message = "1";
+                 header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
                 } 
 
     }
     else 
     {
-    $message = 'Les champs User et Mot de passe doivent être remplis.';
+    //$message = 'Les champs User et Mot de passe doivent être remplis.';
+	$message = "2";
+     header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
     }
 }
 ?>
-
+<!--
 // Et enfin le blabla html qui permet de créer le formulaire de connexion
 
  <form action = "#" method="post">
@@ -74,4 +68,4 @@ if (isset($_POST['user']))
     <p><label for = "password">Mot de passe : </label><input type="password" name="password" id="password" /></p>
     <p><input type="submit" value="Se connecter" id = "valider" /></p>
     </form>
-    <p id = "message"><?php if(isset($message)) echo $message ?></p>
+    <p id = "message"><?php if(isset($message)) echo $message ?></p> -->
