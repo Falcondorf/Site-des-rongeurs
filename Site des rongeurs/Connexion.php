@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // On recommence avec notre fonction sur les magic quotes. D'ailleurs il serait moins idiot de la mettre dans un fichier de fonctions à part et d'y faire appel via include().
 
 function Verif_magicquotes ($chaine) 
@@ -36,9 +36,9 @@ if (isset($_POST['user']))
 		
          if ($requete)  
                {
-                 session_start();
+                 
                  $_SESSION['login'] = $user;
-            
+				 $_SESSION['user_logged'] = "1";
                  //$message = 'Bonjour '.htmlspecialchars($_SESSION['login']).' <a href = "adresse de la page suivante">Cliquez ici pour vous connecter</a>';
 				 $message = "0";
                  header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
@@ -59,13 +59,3 @@ if (isset($_POST['user']))
     }
 }
 ?>
-<!--
-// Et enfin le blabla html qui permet de créer le formulaire de connexion
-
- <form action = "#" method="post">
-    <h1>Formulaire de connexion</h1>
-    <p><label for = "user">User : </label><input type="text" name="user" id="user" /></p>
-    <p><label for = "password">Mot de passe : </label><input type="password" name="password" id="password" /></p>
-    <p><input type="submit" value="Se connecter" id = "valider" /></p>
-    </form>
-    <p id = "message"><?php if(isset($message)) echo $message ?></p> -->

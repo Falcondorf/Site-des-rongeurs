@@ -1,6 +1,6 @@
 <?php
 // On crée une fonction pour éviter que ce soit le boxon avec les magic quotes
-
+session_start();
 function Verif_magicquotes ($chaine) 
 {
 if (get_magic_quotes_gpc()) $chaine = stripslashes($chaine);
@@ -36,8 +36,8 @@ if (isset($_POST['user']))
          {
              $insertion = $maBD->query("INSERT INTO users(usrName,password) VALUES('$user', '$password')");
 
-                $_SESSION['login'] = $user;
-				 session_start();
+                 $_SESSION['login'] = $user;
+				 $_SESSION['user_logged'] = "1";
 				 //$message = "Vous vous êtes bien inscrit, merci!";
 				 $message = "0";
                  header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
@@ -58,17 +58,3 @@ if (isset($_POST['user']))
     }
 }
 ?>
-<!--
-// On écrit un joli blabla en html pour contenir le formulaire d'inscription avec un body dans le genre suivant
-
-<body>
-<div id = "Formulaire inscription">
-    <form action = "#" method = "post">
-    <h1>Inscription</h1>
-    <p><label for = "user">User : </label><input type = "text" name = "user" id = "user" /></p>
-    <p><label for = "password">Mot de passe : </label><input type = "password" name = "password" id = "password" /></p>
-    <p><input type = "submit" value = "Inscription" id = "valider" /></p>
-    </form>
-    <p id = "message"><?php if(isset($message)) echo $message ?></p>
-</div>
-</body> -->

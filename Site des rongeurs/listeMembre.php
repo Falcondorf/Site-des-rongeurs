@@ -27,7 +27,11 @@
 </head>
 
 <body>
-
+	<?php
+		session_start();
+		//var_dump($_SESSION['user_logged']);
+		//var_dump($_SESSION['login']);
+	?>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -65,30 +69,82 @@
 
         <div class="row">
 
-			<p>
-				<form action = "http://localhost/Site%20des%20rongeurs/Inscription.php" method = "post">
-					<h4>Inscription/Connexion</h4>
-					<p><label for = "user">User : </label><input type = "text" name = "user" id = "user" /></p>
-					<p><label for = "password">Mot de passe : </label><input type = "password" name = "password" id = "password" /></p>
-					<p><input type = "submit" value = "Inscription" id = "valider" /></p>
-				</form>
-				<p id = "message">
-				<?php 
-					if(isset($_GET['confirm'])){
-						if($_GET['confirm'] == "2"){
-							echo "Les champs \"User\" et \"Mot de passe\" doivent Ãªtre remplis.";
-						}else{
-							if($_GET['confirm'] == "1"){
-								echo "Ce pseudo est dÃ©jÃ  utilisÃ©, changez-le.";
-							}else {
-								echo "Vous vous Ãªtes bien inscrit, merci!";
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="page-header">
+                    Les Rongeurs du bois joli
+                    <small>Le terrier collections</small>
+                </h1>
+
+                <!-- Tableau des membres -->
+				
+                <hr>
+               
+                
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+            <!--    <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div> -->
+                    <!-- /.input-group -->
+            <!--    </div> -->
+
+                
+
+                <!-- Well Bloc de connexion -->
+                <div class="well">
+                  
+				<?php
+						//var_dump($_SESSION);
+						if ($_SESSION['user_logged'] === "0"){
+							 echo '<form action = "http://localhost/Site%20des%20rongeurs/Connexion.php" method="post">
+								<h4>Connexion</h4>
+								<p><label for = "user">User : </label><input type="text" name="user" id="user" /></p>
+								<p><label for = "password">Mot de passe : </label><input type="password" name="password" id="password" /></p>
+								<p><input type="submit" value="Se connecter" id = "valider" /></p>
+								</form>
+								<p size="5px"><a href="index-inscr.php">Inscrivez-vous par ici.</a></p>
+								
+							<p id = "message">';
+						
+							if(isset($_GET['confirm'])){
+								if($_GET['confirm'] == "0"){
+									//$_SESSION['user_logged'] = "1";
+									echo 'Merci de vous être connecté '.$_SESSION['login'];
+								}else{
+									if ($_GET['confirm'] == "1"){
+										echo 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
+									}else{
+										echo 'Les champs User et Mot de passe doivent être remplis.';
+									}
+								}
 							}
+						
+						}else{
+							echo 'Vous êtes connecté en tant que '.$_SESSION['login'];
+							
+							echo '<form action="http://localhost/Site%20des%20rongeurs/deco.php" method="post">
+									<input type="submit" value="Déconnexion" id="deconnexion" />
+								</form>';
 						}
-					}
-				?></p>
-			</p>
-			
-				<!-- Blog Categories Well -->
+					
+				?>
+				
+                </div>
+<!-- Blog Categories Well -->
                 <div class="well">
                     <h4>Categories</h4>
                     <div class="row">
