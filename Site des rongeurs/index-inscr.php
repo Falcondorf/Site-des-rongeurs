@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Acceuil</a>
+                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Accueil</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -66,12 +66,16 @@
         <div class="row">
 
 			<p>
+					
 				<form action = "http://localhost/Site%20des%20rongeurs/Inscription.php" method = "post">
-					<h4>Inscription/Connexion</h4>
-					<p><label for = "user">User : </label><input type = "text" name = "user" id = "user" /></p>
-					<p><label for = "password">Mot de passe : </label><input type = "password" name = "password" id = "password" /></p>
-					<p><input type = "submit" value = "Inscription" id = "valider" /></p>
+					<fieldset>
+					<legend>Inscription</legend>
+						<p><label for = "user">User : </label><input type = "text" name = "user" id = "user" /></p>
+						<p><label for = "password">Mot de passe : </label><input type = "password" name = "password" id = "password" /></p>
+						<p><input type = "submit" value = "Inscription" id = "valider" /></p>
+					</fieldset>
 				</form>
+					
 				<p id = "message">
 				<?php 
 					if(isset($_GET['confirm'])){

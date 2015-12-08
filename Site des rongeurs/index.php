@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Acceuil</a>
+                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Accueil</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -127,7 +127,7 @@
             <div class="col-md-4">
 
                 <!-- Blog Search Well -->
-            <!--    <div class="well">
+            <!-- <div class="well">
                     <h4>Blog Search</h4>
                     <div class="input-group">
                         <input type="text" class="form-control">
@@ -139,15 +139,26 @@
                     </div> -->
                     <!-- /.input-group -->
             <!--    </div> -->
+			
+					<!-- Horloge de W3school javascript timing events-->
+                <div class="well">
+					<h4><u>Heure</u></h4>
+					<center><h2 id="demo"></h2></center>
+					<script>
+						var myVar = setInterval(myTimer, 1000);
 
-                
+						function myTimer() {
+							var d = new Date();
+							document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+						}
+					</script>
+				</div>
 
                 <!-- Well Bloc de connexion -->
                 <div class="well">
                   
 				<?php
-						//var_dump($_SESSION);
-						if ($_SESSION['user_logged'] === "0"){
+						if (!isset($_SESSION['user_logged']) or $_SESSION['user_logged'] === "0"){
 							 echo '<form action = "http://localhost/Site%20des%20rongeurs/Connexion.php" method="post">
 								<h4>Connexion</h4>
 								<p><label for = "user">User : </label><input type="text" name="user" id="user" /></p>
@@ -160,7 +171,6 @@
 						
 							if(isset($_GET['confirm'])){
 								if($_GET['confirm'] == "0"){
-									//$_SESSION['user_logged'] = "1";
 									echo 'Merci de vous être connecté '.$_SESSION['login'];
 								}else{
 									if ($_GET['confirm'] == "1"){

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html>
 
 <head>
@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Acceuil</a>
+                <a class="navbar-brand" href="http://localhost/Site%20des%20rongeurs/index.php">Accueil</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -81,7 +81,26 @@
 				
                 <hr>
                
-                
+                <?php
+					 $hostname = "localhost";
+					 $database = "rongeurs";
+					 $username = "root";
+					 $password = "";
+				
+					try {
+						$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");
+					} catch (Exception $e) {
+						die('Erreur : ' . $e->getMessage());
+					}
+					
+					$request = "SELECT usrName FROM users ORDER BY usrName"; 
+					echo "<table class='tableau' border='1' width='20%'>
+								<caption>Membres</caption>";
+					foreach ($maBD->query($request) as $row){
+						echo "<tr><th><center>".$row['usrName']."</center></th></tr>";
+					}
+					echo "</table><br/>";
+				?>
 
             </div>
 
@@ -123,21 +142,21 @@
 							if(isset($_GET['confirm'])){
 								if($_GET['confirm'] == "0"){
 									//$_SESSION['user_logged'] = "1";
-									echo 'Merci de vous être connecté '.$_SESSION['login'];
+									echo 'Merci de vous Ãªtre connectÃ© '.$_SESSION['login'];
 								}else{
 									if ($_GET['confirm'] == "1"){
 										echo 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
 									}else{
-										echo 'Les champs User et Mot de passe doivent être remplis.';
+										echo 'Les champs User et Mot de passe doivent Ãªtre remplis.';
 									}
 								}
 							}
 						
 						}else{
-							echo 'Vous êtes connecté en tant que '.$_SESSION['login'];
+							echo 'Vous Ãªtes connectÃ© en tant que '.$_SESSION['login'];
 							
 							echo '<form action="http://localhost/Site%20des%20rongeurs/deco.php" method="post">
-									<input type="submit" value="Déconnexion" id="deconnexion" />
+									<input type="submit" value="DÃ©connexion" id="deconnexion" />
 								</form>';
 						}
 					
