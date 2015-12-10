@@ -29,8 +29,6 @@
 <body>
 	<?php
 		session_start();
-		//var_dump($_SESSION['user_logged']);
-		//var_dump($_SESSION['login']);
 	?>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -93,11 +91,16 @@
 						die('Erreur : ' . $e->getMessage());
 					}
 					
-					$request = "SELECT usrName FROM users ORDER BY usrName"; 
-					echo "<table class='tableau' border='1' width='20%'>
+					$request = "SELECT u.usrName, g.genre,c.titre FROM users u JOIN groupe g ON u.usrId = g.userId JOIN collection c ON g.userId = c.userId ORDER BY usrName;"; 
+					echo "<table class='tableau' border='1' width='60%'>
 								<caption>Membres</caption>";
+					echo "<tr>
+					<th>Pseudo</th><th>Genre</<th><th>Titre</th>
+					</tr>";
 					foreach ($maBD->query($request) as $row){
-						echo "<tr><th><center>".$row['usrName']."</center></th></tr>";
+						echo "<tr><td>".$row['usrName']."</td>
+						<td>".$row['genre']."</td>
+						<td><centre>".$row['titre']."</td></tr>";
 					}
 					echo "</table><br/>";
 				?>
@@ -126,9 +129,8 @@
                 <!-- Well Bloc de connexion -->
                 <div class="well">
                   
-				<?php
-						//var_dump($_SESSION);
-						if ($_SESSION['user_logged'] === "0"){
+				<?php						
+						if (!isset($_SESSION['user_logged']) or $_SESSION['user_logged'] === "0"){
 							 echo '<form action = "http://localhost/Site%20des%20rongeurs/Connexion.php" method="post">
 								<h4>Connexion</h4>
 								<p><label for = "user">User : </label><input type="text" name="user" id="user" /></p>
@@ -141,7 +143,6 @@
 						
 							if(isset($_GET['confirm'])){
 								if($_GET['confirm'] == "0"){
-									//$_SESSION['user_logged'] = "1";
 									echo 'Merci de vous être connecté '.$_SESSION['login'];
 								}else{
 									if ($_GET['confirm'] == "1"){
