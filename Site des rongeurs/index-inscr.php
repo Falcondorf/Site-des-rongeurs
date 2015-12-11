@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Collection</a>
+                        <a href="http://localhost/Site%20des%20rongeurs/collection.php">Collection</a>
                     </li>
                     <li>
                         <a href="http://localhost/Site%20des%20rongeurs/listeMembre.php">Membres</a>

@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Collection</a>
+                        <a href="http://localhost/Site%20des%20rongeurs/collection.php">Collection</a>
                     </li>
                     <li>
                         <a href="http://localhost/Site%20des%20rongeurs/listeMembre.php">Membres</a>
@@ -93,7 +93,7 @@
 					
 					$request = "SELECT u.usrName, g.genre,c.titre FROM users u JOIN groupe g ON u.usrId = g.userId JOIN collection c ON g.userId = c.userId ORDER BY usrName;"; 
 					echo "<table class='tableau' border='1' width='60%'>
-								<caption>Membres</caption>";
+								<caption>Membres et leur collection</caption>";
 					echo "<tr>
 					<th>Pseudo</th><th>Genre</<th><th>Titre</th>
 					</tr>";

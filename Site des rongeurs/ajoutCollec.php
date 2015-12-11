@@ -29,8 +29,9 @@
 <body>
 	<?php
 		session_start();
-		//var_dump($_SESSION['user_logged']);
-		//var_dump($_SESSION['login']);
+		if (!isset($_SESSION['login'])){
+			header("Location:http://localhost/Site%20des%20rongeurs/index.php");
+		}
 	?>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -49,7 +50,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="http://localhost/Site%20des%20rongeurs/collection.php">Collection</a>
+                        <a href="http://localhost/Site%20des%20rongeur/collection.php">Collection</a>
                     </li>
                     <li>
                         <a href="http://localhost/Site%20des%20rongeurs/listeMembre.php">Membres</a>
@@ -77,39 +78,33 @@
                     <small>Le terrier collections</small>
                 </h1>
 
-                <!-- Premier message de bienvenue -->
-                <h2>
-                    <a href="#">Bienvenue</a>
-                </h2>
-                <p class="lead">
-                    par Rongeurs
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on November 13, 2015 at 14:49 PM</p>
-                <hr>
-				<a href="#" >
-					<img class="img-responsive" src="http://a137.idata.over-blog.com/1/44/68/40/2010/08-Aout/Lapins/Lapin03.jpg" width="900px" height="300px" >
-				</a>
-                <hr>
-                <p>Bienvenue dans le terrier des Rongeurs. Ce site vous permettra de partager et consulter vos collections avec tout le monde.</p><p class="from">**Image from http://naturapix.over-blog.com/article-lapins-55259715.html **</p>
-                <a class="btn btn-primary" href="#">Savoir plus <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                <hr>
-
-                <!-- Second Blog Post -->
-                <h2>
-                    <a href="#">En savoir plus?</a>
-                </h2>
-                <p class="lead">
-                    by Rongeurs
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on December 1, 2015 at 14:09 PM</p>
-                <hr>
-                <img class="img-responsive" src="http://ufcvorgzff.cluster011.ovh.net/wp-content/uploads/2015/07/Question.jpg" alt="">
-                <hr>
-                <p>Vous vous demandez surement à quoi peut bien servir ce site web? Eh, bien c'est très simple, il vous suffit de vous renseigner dans cette section.</p><p class="from">**Image from http://ufcv.org/questionsreponses/ **</p>
-                <a class="btn btn-primary" href="#">Savoir plus <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                <hr>
+                <!-- Formulaire ajout Collection 		(masquer et afficher alerte si possède déjà une collection)-->
+				
+				<form action = "http://localhost/Site%20des%20rongeurs/#" method = "post">
+					<fieldset>
+					<legend>Groupe</legend>
+						<p><label for="genre">Genre : </label><select name="genre">
+							<option value="physique">PHYSIQUE</option>
+							<option value="virtuel">VIRTUEL</option>							
+						</select>
+						<small>*s'agit-il d'un format que l'on peut toucher(physique) ou bien à lire sur une plateforme(virtuel)?</small>
+						</p>
+						<p><label for = "type">Type : </label><input type = "text" name = "type" id = "type" />
+						<small>*quelle type d'objet est-ce?</small>
+						</p>				
+					</fieldset>
+					
+					<fieldset>
+					<legend>Collection</legend>
+						<p><label for = "titre">Titre : </label><input type = "text" name = "titre" id = "titre" />
+						<small>*le nom de votre collection personelle</small></p>
+						<p><label for="description">Description : </label></p><textarea name="description" rows="4" cols="50" /></textarea>
+					</fieldset>
+					
+					<p><input type = "submit" value = "Envoyer" id = "valider" /></p>
+				</form>
+				
+				<hr>
 
                 <!-- Pager 
                 <ul class="pager">
