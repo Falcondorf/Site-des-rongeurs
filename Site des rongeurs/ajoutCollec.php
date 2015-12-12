@@ -79,43 +79,44 @@
                 </h1>
 
                 <!-- Formulaire ajout Collection 		(masquer et afficher alerte si possède déjà une collection)-->
-				
-				<form action = "http://localhost/Site%20des%20rongeurs/#" method = "post">
-					<fieldset>
-					<legend>Groupe</legend>
-						<p><label for="genre">Genre : </label><select name="genre">
-							<option value="physique">PHYSIQUE</option>
-							<option value="virtuel">VIRTUEL</option>							
-						</select>
-						<small>*s'agit-il d'un format que l'on peut toucher(physique) ou bien à lire sur une plateforme(virtuel)?</small>
-						</p>
-						<p><label for = "type">Type : </label><input type = "text" name = "type" id = "type" />
-						<small>*quelle type d'objet est-ce?</small>
-						</p>				
-					</fieldset>
+				<?php
 					
-					<fieldset>
-					<legend>Collection</legend>
-						<p><label for = "titre">Titre : </label><input type = "text" name = "titre" id = "titre" />
-						<small>*le nom de votre collection personelle</small></p>
-						<p><label for="description">Description : </label></p><textarea name="description" rows="4" cols="50" /></textarea>
-					</fieldset>
-					
-					<p><input type = "submit" value = "Envoyer" id = "valider" /></p>
-				</form>
+						echo '<form action = "http://localhost/Site%20des%20rongeurs/addCollec.php" method = "post">
+							<fieldset>
+							<legend>Groupe</legend>
+								<p><label for="genre">Genre : </label><select name="genre">
+									<option value="physique">PHYSIQUE</option>
+									<option value="virtuel">VIRTUEL</option>							
+								</select>
+								<small>*s\'agit-il d\'un format que l\'on peut toucher(physique) ou bien à lire sur une plateforme(virtuel)?</small>
+								</p>
+								<p><label for = "type">Type : </label><input type = "text" name = "type" id = "type" />
+								<small>*quelle type d\'objet est-ce?</small>
+								</p>				
+							</fieldset>
+							
+							<fieldset>
+							<legend>Collection</legend>
+								<p><label for = "titre">Titre : </label><input type = "text" name = "titre" id = "titre" />
+								<small>*le nom de votre collection personelle</small></p>
+								<p><label for="description">Description : </label></p><textarea name="description" rows="4" cols="50" /></textarea>
+							</fieldset>
+							
+							<p><input type = "submit" value = "Envoyer" id = "valider" /></p>
+						</form>';
 				
+					if(isset($_GET['confirm'])){
+						if($_GET['confirm'] == '0'){
+							echo '<p>Un champs n\'a pas été remplis.</p>';
+						}else{
+							echo '';
+						}
+					}
+				?>
+								
 				<hr>
 
-                <!-- Pager 
-                <ul class="pager">
-                    <li class="previous">
-                        <a href="#">&larr; Older</a>
-                    </li>
-                    <li class="next">
-                        <a href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
-							-->
+				
             </div>
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">

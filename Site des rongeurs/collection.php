@@ -49,7 +49,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="http://localhost/Site%20des%20rongeur/collection.php">Collection</a>
+                        <a href="http://localhost/Site%20des%20rongeurs/collection.php">Collection</a>
                     </li>
                     <li>
                         <a href="http://localhost/Site%20des%20rongeurs/listeMembre.php">Membres</a>
@@ -86,10 +86,16 @@
 						<img src="http://nomadity.be/blog_decouverte/wp-content/uploads/2012/11/bouton-go.jpg" width="30px" height="30px" />
 						</a>
 					</p>';
+				} else {
+					echo '<p align="right">Vous devez être connecté afin d\'ajouter une collection</p>';
 				}
              ?>   
 				<hr>
+				
+				<!-- Liste des collections -->
 
+				
+				
                 <!-- Pager 
                 <ul class="pager">
                     <li class="previous">

@@ -28,28 +28,23 @@ if (isset($_POST['user']))
     if(isset($user,$password)) 
     {
     
-         $nom = $_POST['user'];
-         $pass = $_POST['password'];
+        $nom = $_POST['user'];
+        $pass = $_POST['password'];
     
-    
-         $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")->fetchColumn(); 
 		
-         if ($requete)  
-               {
-                 
-                 $_SESSION['login'] = $user;
-				 $_SESSION['user_logged'] = "1";
-                 //$message = 'Bonjour '.htmlspecialchars($_SESSION['login']).' <a href = "adresse de la page suivante">Cliquez ici pour vous connecter</a>';
-				 $message = "0";
-                 header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
-                }
-                else
-                {
-                //$message = 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
-				$message = "1";
-                 header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
-                } 
-
+        $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")->fetchColumn(); 
+		
+        if ($requete){
+			$_SESSION['login'] = $user;
+			$_SESSION['user_logged'] = "1";
+			 //$message = 'Bonjour '.htmlspecialchars($_SESSION['login']).' <a href = "adresse de la page suivante">Cliquez ici pour vous connecter</a>';
+			$message = "0";
+			header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
+        }else{
+			//$message = 'Le nom d\'utilisateur ou le mot de passe sont incorrect';
+			$message = "1";
+			header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
+        } 
     }
     else 
     {
