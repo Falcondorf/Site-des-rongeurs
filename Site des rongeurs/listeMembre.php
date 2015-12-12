@@ -91,7 +91,7 @@
 						die('Erreur : ' . $e->getMessage());
 					}
 					
-					$request = "SELECT u.usrName, g.genre,c.titre FROM users u JOIN groupe g ON u.usrId = g.userId JOIN collection c ON g.userId = c.userId ORDER BY usrName;"; 
+					$request = "SELECT u.usrName, g.genre,c.titre FROM users u JOIN groupe g ON u.usrId = g.userId JOIN collection c ON g.userId = c.userId ORDER BY genre;"; 
 					echo "<table class='tableau' border='1' width='60%'>
 								<caption>Membres et leur collection</caption>";
 					echo "<tr>
