@@ -17,15 +17,20 @@
 			$type=$_POST['type'];
 			$titre=$_POST['titre'];
 			$descr=$_POST['description'];
+			$user=$_SESSION['id'];
 			
-			$request1 = $maBD->query("INSERT INTO collection(userId, titre, description) VALUES ('', '', '');");
-			$request2 = $maBD->query("INSERT INTO groupe(userId, numColl, genre, type) VALUES ('', '', '', '');");
+			$request1 = $maBD->exec("INSERT INTO collection(userId,titre,description) VALUES('$user', '$titre', '$descr')");
+			$lastId = $maBD->lastInsertId();
+			$request2 = $maBD->exec("INSERT INTO groupe(userId,numColl,genre,type) VALUES('$user', '$lastId', '$genre', '$type')");
+			// echo 'avant header';
+			$message = '1';
+			header("Location:http://localhost/Site%20des%20rongeurs/collection.php?confirm=".$message);
+			// echo 'après header';
 		}else{
+			// echo 'Je suis pas init';
 			$message='0';
 			header("Location:http://localhost/Site%20des%20rongeurs/ajoutCollec.php?confirm=".$message);
 		}
-		
-		echo "Genre::".$genre." Type::".$type." Titre::".$titre." Description::".$descr
-		
-		
+
+		// echo 'Je suis dehors';
 ?>

@@ -32,9 +32,10 @@ if (isset($_POST['user']))
         $pass = $_POST['password'];
     
 		
-        $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")->fetchColumn(); 
+        $requete = $maBD->query("SELECT * FROM users WHERE usrName = '$nom' AND password = '$password'")->fetch(); 
+		$_SESSION['id'] = $requete['usrId'];
 		
-        if ($requete){
+        if ($requete){			
 			$_SESSION['login'] = $user;
 			$_SESSION['user_logged'] = "1";
 			 //$message = 'Bonjour '.htmlspecialchars($_SESSION['login']).' <a href = "adresse de la page suivante">Cliquez ici pour vous connecter</a>';

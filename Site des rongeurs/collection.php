@@ -79,7 +79,7 @@
 
                 <!-- Sélection des différentes collections -->
 			<?php	
-				if(isset($_SESSION['login'])){
+				if(isset($_SESSION['login']) && isset($_SESSION['id'])){
 					echo '<p align="right">
 						<strong>Ajouter une collection</strong>
 						<a href="http://localhost/Site%20des%20rongeurs/ajoutCollec.php">
@@ -87,7 +87,13 @@
 						</a>
 					</p>';
 				} else {
-					echo '<p align="right">Vous devez être connecté afin d\'ajouter une collection</p>';
+					echo '<p align="right">Vous devez être connecté afin d\'ajouter une collection sinon relancez votre session.</p>';
+				}
+				
+				if(isset($_GET['confirm'])){
+					if($_GET['confirm'] == '1'){
+						echo '<p align="right">Votre collection a été ajoutée.</p>';
+					}
 				}
              ?>   
 				<hr>

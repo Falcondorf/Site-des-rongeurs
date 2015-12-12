@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="http://localhost/Site%20des%20rongeur/collection.php">Collection</a>
+                        <a href="http://localhost/Site%20des%20rongeurs/collection.php">Collection</a>
                     </li>
                     <li>
                         <a href="http://localhost/Site%20des%20rongeurs/listeMembre.php">Membres</a>
@@ -104,12 +104,10 @@
 							
 							<p><input type = "submit" value = "Envoyer" id = "valider" /></p>
 						</form>';
-				
+					
 					if(isset($_GET['confirm'])){
 						if($_GET['confirm'] == '0'){
 							echo '<p>Un champs n\'a pas été remplis.</p>';
-						}else{
-							echo '';
 						}
 					}
 				?>

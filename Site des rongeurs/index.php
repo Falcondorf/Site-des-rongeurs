@@ -29,7 +29,7 @@
 <body>
 	<?php
 		session_start();
-		//var_dump($_SESSION['user_logged']);
+		// var_dump($_SESSION['id']);
 		//var_dump($_SESSION['login']);
 	?>
     <!-- Navigation -->

@@ -31,16 +31,15 @@ if (isset($_POST['user']))
          // Connexion à la base
 		 
 		$verif = $maBD->query("SELECT COUNT(*) FROM users WHERE usrName = '$user'")->fetchColumn();
-
+		
          if ($verif === '0') 
          {
-             $insertion = $maBD->query("INSERT INTO users(usrName,password) VALUES('$user', '$password')");
-
-                 $_SESSION['login'] = $user;
-				 $_SESSION['user_logged'] = "1";
-				 //$message = "Vous vous êtes bien inscrit, merci!";
-				 $message = "0";
-                 header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
+            $insertion = $maBD->query("INSERT INTO users(usrName,password) VALUES('$user', '$password')");
+            $_SESSION['login'] = $user;
+			$_SESSION['user_logged'] = "1";
+			//$message = "Vous vous êtes bien inscrit, merci!";
+			$message = "0";
+            header("Location:http://localhost/Site%20des%20rongeurs/index.php?confirm=".$message);
             // }    
          }
          else
