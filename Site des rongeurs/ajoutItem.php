@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -29,6 +29,9 @@
 <body>
 	<?php
 		session_start();
+		if (!isset($_SESSION['login'])){
+			header("Location:http://localhost/Site%20des%20rongeurs/index.php");
+		}
 	?>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -75,43 +78,54 @@
                     <small>Le terrier collections</small>
                 </h1>
 
-                <!-- Tableau des membres -->
-				
-                <hr>
-               
-                <?php
-					 $hostname = "localhost";
-					 $database = "rongeurs";
-					 $username = "root";
-					 $password = "";
-				
+                <!-- Formulaire ajout Item -->
+				<?php
+					$hostname = "localhost";
+					$database = "rongeurs";
+					$username = "root";
+					$password = "";
+
 					try {
 						$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");
 					} catch (Exception $e) {
 						die('Erreur : ' . $e->getMessage());
 					}
-					
-					$request = "SELECT u.usrName, g.genre,c.titre FROM users u JOIN groupe g ON u.usrId = g.userId JOIN collection c ON g.numColl = c.numColl ORDER BY genre, usrName"; 
-					echo "<table class='tableau' border='1' width='60%'>
-								<caption>Membres et leur collection</caption>";
-					echo "<tr>
-					<th>Pseudo</th><th>Genre</<th><th>Titre</th>
-					</tr>";
-					foreach ($maBD->query($request) as $row){
-						echo "<tr><td>".$row['usrName']."</td>
-						<td>".$row['genre']."</td>
-						<td><centre>".$row['titre']."</td></tr>";
+					$user=$_SESSION['id'];
+					$requete = "SELECT titre, numColl FROM collection JOIN users ON users.usrId = collection.userId WHERE userId = '$user'";
+					foreach ($maBD->query($requete) as $row){
+						$array[$row['numColl']] = $row['titre'];
 					}
-					echo "</table><br/>";
+					
+					echo '<form action = "http://localhost/Site%20des%20rongeurs/addItem.php" method = "post">
+						<fieldset>
+						<legend>Ajout d\'un objet à votre collection</legend>
+							<p><label for="genre">Collection : </label><select name="collec">';
+					foreach($array as $value => $name){
+						echo '<option value="'.$value.'">'.$name.'</option>';
+					}	
+					echo '</select></p>							
+							<p><label for = "name">Nom de l\'item : </label><input type = "text" name = "name" id = "name" /></p>
+							<p><label for = "image">URL de votre image : </label><input type = "url" name = "image" id = "image" /></p>
+						</fieldset>
+
+						<p><input type = "submit" value = "Envoyer" id = "valider" /></p>
+					</form>';
+					if(isset($_GET['confirm'])){
+						if($_GET['confirm'] == '0'){
+							echo '<p>Un champs n\'a pas été remplis.</p>';
+						}
+					}
 				?>
+								
+				<hr>
 
+				
             </div>
-
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
 
                 <!-- Blog Search Well -->
-            <!--    <div class="well">
+            <!-- <div class="well">
                     <h4>Blog Search</h4>
                     <div class="input-group">
                         <input type="text" class="form-control">
@@ -123,13 +137,25 @@
                     </div> -->
                     <!-- /.input-group -->
             <!--    </div> -->
+			
+					<!-- Horloge de W3school javascript timing events-->
+                <div class="well">
+					<h4><u>Heure</u></h4>
+					<center><h2 id="demo"></h2></center>
+					<script>
+						var myVar = setInterval(myTimer, 1000);
 
-                
+						function myTimer() {
+							var d = new Date();
+							document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+						}
+					</script>
+				</div>
 
                 <!-- Well Bloc de connexion -->
                 <div class="well">
                   
-				<?php						
+				<?php
 						if (!isset($_SESSION['user_logged']) or $_SESSION['user_logged'] === "0"){
 							 echo '<form action = "http://localhost/Site%20des%20rongeurs/Connexion.php" method="post">
 								<h4>Connexion</h4>

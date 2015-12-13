@@ -78,7 +78,7 @@
                     <small>Le terrier collections</small>
                 </h1>
 
-                <!-- Formulaire ajout Collection 		(masquer et afficher alerte si possède déjà une collection)-->
+                <!-- Formulaire ajout Collection -->
 				<?php
 					
 						echo '<form action = "http://localhost/Site%20des%20rongeurs/addCollec.php" method = "post">

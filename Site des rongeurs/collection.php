@@ -79,22 +79,39 @@
 
                 <!-- Sélection des différentes collections -->
 			<?php	
-				if(isset($_SESSION['login']) && isset($_SESSION['id'])){
-					echo '<p align="right">
-						<strong>Ajouter une collection</strong>
-						<a href="http://localhost/Site%20des%20rongeurs/ajoutCollec.php">
-						<img src="http://nomadity.be/blog_decouverte/wp-content/uploads/2012/11/bouton-go.jpg" width="30px" height="30px" />
-						</a>
-					</p>';
-				} else {
-					echo '<p align="right">Vous devez être connecté afin d\'ajouter une collection sinon relancez votre session.</p>';
-				}
-				
-				if(isset($_GET['confirm'])){
-					if($_GET['confirm'] == '1'){
-						echo '<p align="right">Votre collection a été ajoutée.</p>';
+					
+					if(isset($_SESSION['login']) && isset($_SESSION['id'])){
+						echo '<p align="right">
+							<strong>Ajouter une collection</strong>
+							<a href="http://localhost/Site%20des%20rongeurs/ajoutCollec.php">
+							<img src="http://nomadity.be/blog_decouverte/wp-content/uploads/2012/11/bouton-go.jpg" width="30px" height="30px" />
+							</a>
+						</p>';
+					} else {
+						echo '<p align="right">Vous devez être connecté afin d\'ajouter une collection sinon relancez votre session.</p>';
 					}
-				}
+					
+					if(isset($_GET['confirm'])){
+						if($_GET['confirm'] == '1'){
+							echo '<p align="right">Votre collection a été ajoutée.</p>';
+						}
+					}
+				
+					if(isset($_SESSION['login']) && isset($_SESSION['id'])){
+						echo '<p align="right">
+							<strong>Ajouter un objet à votre collection</strong>
+							<a href="http://localhost/Site%20des%20rongeurs/ajoutItem.php">
+							<img src="http://nomadity.be/blog_decouverte/wp-content/uploads/2012/11/bouton-go.jpg" width="30px" height="30px" />
+							</a>
+						</p>';
+					}
+					
+					if(isset($_GET['confirm'])){
+						if($_GET['confirm'] == '2'){
+							echo '<p align="right">Votre objet a été ajoutée.</p>';
+						}
+					}
+					
              ?>   
 				<hr>
 				
