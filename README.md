@@ -7,18 +7,18 @@ Le site des rongeurs n'est pas comme son nom l'indique un endroit pour se réuni
 ## Disponibilité
 
 En tant que simple visiteur, vous avez le droit de:
-*Vous inscrire ou vous connecter sur le site;
-*Consulter les différentes collections.
+* Vous inscrire ou vous connecter sur le site;
+* Consulter les différentes collections.
 
 En tant qu'utilisateur, vous pouvez:
-*Vous créer une ou plusieurs collection;
-*Ajouter de nouveaux objet à votre collection;
-*Vous déconnecter de votre compte.
+* Vous créer une ou plusieurs collection;
+* Ajouter de nouveaux objet à votre collection;
+* Vous déconnecter de votre compte.
 
 ## Base de donnée
 
 Le site emploie une base de donnée composée de 4 tables:
-*users, qui enregistre les données des utilisateurs qui s'inscrivent [usrName, password]
-*groupe, qui classifie une collection [genre, type]
-*collection, qui détermine une collection d'un utilisateur [titre, description]
-*item, qui est un des objet de collection d'un utilisateur [nom, dateAjout, urlImg]
+* users, qui enregistre les données des utilisateurs qui s'inscrivent [usrName, password]
+* groupe, qui classifie une collection [genre, type]
+* collection, qui détermine une collection d'un utilisateur [titre, description]
+* item, qui est un des objet de collection d'un utilisateur [nom, dateAjout, urlImg]
