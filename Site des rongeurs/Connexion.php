@@ -12,9 +12,9 @@ return $chaine;
 if (isset($_POST['user'])) 
 {
 	 $hostname = "localhost";
-			 $database = "rongeurs";
-			 $username = "root";
-			 $password = "";
+	 $database = "rongeurs";
+	 $username = "root";
+	 $password = "";
 		
 			try {
 				$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");

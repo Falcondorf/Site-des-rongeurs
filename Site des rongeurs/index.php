@@ -23,7 +23,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
 </head>
 
 <body>
@@ -32,6 +31,7 @@
 		// var_dump($_SESSION['id']);
 		//var_dump($_SESSION['login']);
 	?>
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -219,7 +219,7 @@
                                 <li><a href="#">Category Name</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> 
                         <!-- /.col-lg-6 -->
                     </div>
                     <!-- /.row -->

@@ -23,7 +23,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+ 
+	<script type="text/javascript">
+	   $(function(){
+		  setInterval(function(){
+			 $(".slideshow ul").animate({marginLeft:-700},800,function(){
+				$(this).css({marginLeft:0}).find("li:last").after($(this).find("li:first"));
+			 })
+		  }, 6000);
+	   });
+	</script>
 </head>
 
 <body>
@@ -116,8 +126,36 @@
 				<hr>
 				
 				<!-- Liste des collections -->
-
+			<?php
+				$hostname = "localhost";
+				 $database = "rongeurs";
+				 $username = "root";
+				 $password = "";
+		
+				try {
+					$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");
+				} catch (Exception $e) {
+					die('Erreur : ' . $e->getMessage());
+				}
+				$requete1 = "SELECT titre, description, usrName, collection.numColl FROM collection JOIN groupe ON groupe.numColl = collection.numColl JOIN users ON collection.userId = users.usrId order by genre, type";
 				
+				
+				foreach ($maBD->query($requete1) as $row){
+					echo '<h3>'.$row['titre'].'<small>&nbspfrom&nbsp'.$row['usrName'].'</small></h3>';
+					$requete2 = "SELECT nom, urlImg FROM item JOIN collection ON collection.numColl = item.numColl JOIN users on collection.userId = users.usrId WHERE collection.numColl = ".$row['numColl']." ";
+					echo '<div class="slideshow"><ul>';
+					foreach($maBD->query($requete2) as $img){
+						echo '<li><img src="'.$img['urlImg'].'" alt="" width="700" height="350" /></li>';
+					}
+					echo '</ul></div>
+					<p>'.$row['description'].'</p>Contient: {';
+					foreach($maBD->query($requete2) as $img){
+						echo '<small>'.$img['nom'].',&nbsp</small>';
+					}
+					echo '}';
+				}
+			?>
+			
 				
                 <!-- Pager 
                 <ul class="pager">
