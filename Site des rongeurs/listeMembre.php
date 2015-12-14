@@ -123,8 +123,20 @@
                     </div> -->
                     <!-- /.input-group -->
             <!--    </div> -->
+				
+				<!-- Horloge de W3school javascript timing events-->
+                <div class="well">
+					<h4><u>Heure</u></h4>
+					<center><h2 id="demo"></h2></center>
+					<script>
+						var myVar = setInterval(myTimer, 1000);
 
-                
+						function myTimer() {
+							var d = new Date();
+							document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+						}
+					</script>
+				</div>
 
                 <!-- Well Bloc de connexion -->
                 <div class="well">
@@ -166,36 +178,7 @@
                 </div>
 <!-- Blog Categories Well -->
                 <div class="well">
-                    <h4>Categories</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                    </div>
-                    <!-- /.row -->
+                    <?php include 'categories.php';?>
                 </div>
             </div>
 
