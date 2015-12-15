@@ -142,7 +142,7 @@
 				
 				foreach ($maBD->query($requete1) as $row){
 					echo '<h3>'.$row['titre'].'<small>&nbspfrom&nbsp'.$row['usrName'].'</small></h3>';
-					$requete2 = "SELECT nom, urlImg FROM item JOIN collection ON collection.numColl = item.numColl JOIN users on collection.userId = users.usrId WHERE collection.numColl = ".$row['numColl']." ";
+					$requete2 = "SELECT nom, urlImg, dateAjout FROM item JOIN collection ON collection.numColl = item.numColl JOIN users on collection.userId = users.usrId WHERE collection.numColl = ".$row['numColl']." ";
 					echo '<div class="slideshow"><ul>';
 					foreach($maBD->query($requete2) as $img){
 						echo '<li><img src="'.$img['urlImg'].'" alt="" width="700" height="350" /></li>';
@@ -150,7 +150,7 @@
 					echo '</ul></div>
 					<p>'.$row['description'].'</p>Contient: {';
 					foreach($maBD->query($requete2) as $img){
-						echo '<small>'.$img['nom'].',&nbsp</small>';
+						echo '<small>'.$img['nom'].' ajouté le '.$img['dateAjout'].'&nbsp||&nbsp</small>';
 					}
 					echo '}';
 				}
