@@ -87,82 +87,37 @@
                     <small>Le terrier collections</small>
                 </h1>
 
-                <!-- Sélection des différentes collections -->
-			<?php	
-					
-					if(isset($_SESSION['login']) && isset($_SESSION['id'])){
-						echo '<p align="right">
-							<strong>Ajouter une collection</strong>
-							<a href="http://localhost/Site%20des%20rongeurs/ajoutCollec.php">
-							<img src="http://nomadity.be/blog_decouverte/wp-content/uploads/2012/11/bouton-go.jpg" width="30px" height="30px" />
-							</a>
-						</p>';
-					} else {
-						echo '<p align="right">Vous devez être connecté afin d\'ajouter une collection sinon relancez votre session.</p>';
-					}
-					
-					if(isset($_GET['confirm'])){
-						if($_GET['confirm'] == '1'){
-							echo '<p align="right">Votre collection a été ajoutée.</p>';
+               <form action="http://localhost/Site%20des%20rongeurs/formRechGenre.php" method="post">
+					<p><label for="genre">Genre : </label><select name="genre">
+							<option value="physique">PHYSIQUE</option>
+							<option value="virtuel">VIRTUEL</option>							
+						</select>
+					<p><input type="submit" value="Envoyer" id="envoie" /></p>
+			   </form>
+			   <hr>
+			   
+			   <?php
+					if (isset($_POST['genre'])){
+						$hostname = "localhost";
+						 $database = "rongeurs";
+						 $username = "root";
+						 $password = "";
+				
+						try {
+							$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");
+						} catch (Exception $e) {
+							die('Erreur : ' . $e->getMessage());
 						}
-					}
-				
-					if(isset($_SESSION['login']) && isset($_SESSION['id'])){
-						echo '<p align="right">
-							<strong>Ajouter un objet à votre collection</strong>
-							<a href="http://localhost/Site%20des%20rongeurs/ajoutItem.php">
-							<img src="http://nomadity.be/blog_decouverte/wp-content/uploads/2012/11/bouton-go.jpg" width="30px" height="30px" />
-							</a>
-						</p>';
-					}
-					
-					if(isset($_GET['confirm'])){
-						if($_GET['confirm'] == '2'){
-							echo '<p align="right">Votre objet a été ajoutée.</p>';
+						
+						$genre = $_POST['genre'];
+						$requete = "SELECT * FROM item JOIN collection ON collection.numColl = item.numColl JOIN groupe ON collection.numColl = groupe.numColl JOIN users ON collection.userId = users.usrId WHERE genre='$genre' ORDER BY item.numColl";
+						
+						foreach ($maBD->query($requete) as $row){
+							echo '<h3>'.$row['nom'].'&nbsp;from&nbsp;'.$row['titre'].'&nbsp;by&nbsp;'.$row['usrName'].'</h3>
+							<p><img src="'.$row['urlImg'].'" alt="" width="700" height="350" /></p>';
 						}
-					}
-					
-					if(isset($_SESSION['login']) && isset($_SESSION['id'])){
-						echo '<p align="right"><a href="http://localhost/Site%20des%20rongeurs/formRechColl.php">Rechercher une collection</p></a>';
-					}
-					
-					if(isset($_SESSION['login']) && isset($_SESSION['id'])){
-						echo '<p align="right"><a href="http://localhost/Site%20des%20rongeurs/formRechGenre.php">Recherche par genre</p></a>';
-					}
-					
-             ?>   
-				<hr>
-				
-				<!-- Liste des collections -->
-			<?php
-				$hostname = "localhost";
-				 $database = "rongeurs";
-				 $username = "root";
-				 $password = "";
-		
-				try {
-					$maBD = new PDO("mysql:host=$hostname;dbname=$database","$username","$password");
-				} catch (Exception $e) {
-					die('Erreur : ' . $e->getMessage());
-				}
-				$requete1 = "SELECT titre, description, usrName, collection.numColl FROM collection JOIN groupe ON groupe.numColl = collection.numColl JOIN users ON collection.userId = users.usrId order by genre, type";
-				
-				
-				foreach ($maBD->query($requete1) as $row){
-					echo '<h3>'.$row['titre'].'<small>&nbspfrom&nbsp'.$row['usrName'].'</small></h3>';
-					$requete2 = "SELECT nom, urlImg, dateAjout FROM item JOIN collection ON collection.numColl = item.numColl JOIN users on collection.userId = users.usrId WHERE collection.numColl = ".$row['numColl']." ";
-					echo '<div class="slideshow"><ul>';
-					foreach($maBD->query($requete2) as $img){
-						echo '<li><img src="'.$img['urlImg'].'" alt="" width="700" height="350" /></li>';
-					}
-					echo '</ul></div>
-					<p>'.$row['description'].'</p>Contient: {';
-					foreach($maBD->query($requete2) as $img){
-						echo '<small>'.$img['nom'].' ajouté le '.$img['dateAjout'].'&nbsp||&nbsp</small>';
-					}
-					echo '}';
-				}
-			?>
+					}	
+			   ?>
 			
 				
                 <!-- Pager 

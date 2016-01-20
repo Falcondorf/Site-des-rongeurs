@@ -23,7 +23,18 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
+	<script type="text/javascript">
+		function checkPswd (chaine){
+				var pswd = /^(?=.*\d).{4,}$/;
+				if (chaine = "" || chaine.value.match(pswd)){
+					alert('Correct Password');
+					return true;
+				} else {
+					alert('Incorrect Password');
+					return false;
+				}
+		}
+	</script>
 </head>
 
 <body>
@@ -67,12 +78,12 @@
 
 			<p>
 					
-				<form action = "http://localhost/Site%20des%20rongeurs/Inscription.php" method = "post">
+				<form action = "http://localhost/Site%20des%20rongeurs/Inscription.php" onclick="checkPswd(password)" method = "post" ">
 					<fieldset>
 					<legend>Inscription</legend>
 						<p><label for = "user">User : </label><input type = "text" name = "user" id = "user" /></p>
 						<p><label for = "password">Mot de passe : </label><input type = "password" name = "password" id = "password" /></p>
-						<p><input type = "submit" value = "Inscription" id = "valider" /></p>
+						<p><input type = "submit" value = "Inscription" id = "valider"  /></p>
 					</fieldset>
 				</form>
 					
