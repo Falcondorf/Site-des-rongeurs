@@ -23,4 +23,11 @@ masque: 255.255.192.0
 default gateway: 192.168.192.1
 DNS: 8.8.8.8
 
-Dans l'onglet de gauche AD DS -> barre jaune bouton more -> action promote -> add a new forest -> attribuer un nom de domaine (domaine18.xy) -> password (Test1234) -> 
+Dans l'onglet de gauche AD DS -> barre jaune bouton more -> action promote -> add a new forest -> attribuer un nom de domaine (domain34.xy) -> password (Test1234) -> 
+
+Commande shell: nslookup interroge le DNS. Il nous donne l'adresse de celui qui prétend être le serveur DNS (sous forme d'IPv6). Une fois dans la console de nslookup, on insère le nom de la machine sur le domaine et on obtient des informations.
+
+Installation de Win10 Pro en machine virtuelle.
+
+Administrative tool -> Acrive directory Users and computer -> clique droit Users -> New User -> etc
+
