@@ -1,0 +1,26 @@
+Aide mémoire:
+
+Chemin du partage de fichier: \\L601P20\eDistri\4S
+
+La perte de password ou ne pas en mettre un, risque d'empêcher la création de l'active directory. 
+
+MDP de l'OS = Test1234
+
+Théorie à connaitre: concept réseau.
+[PC]<------->[commutateur]<--->[routeur]<----->(Internet)<---->[Serveur hôte]
+	  câble						212.1.2.3		BGP				80.1.2.3
+192.167.200.10					192.168.192.1	=>Algorithme de routage dynamique
+255.255.192.0					255.255.192.0
+@MAC [24bits]
+
+Le paquet envoyé contient l'@IP de destination, l'@IP de l'expéditeur et l'@MAC. Le routeur va envoyer son paquet sur la default gateway car il voit que l'adresse destination n'est pas dans le réseau local. Le routeur lorsqu'il a reçu le paquet à envoyé sur l'internet à remplacer l'adresse d'expéditeur par la sienne (NAT). Table de MAC address dans l'ordinateur.
+Protocole de liaison @IP-@MAC = ARP
+DNS: table associant une adresse avec un nom. Notemment on va devoir nommer l'active director de Windows server.
+
+config ethernet:
+@IP: 192.168.200.108
+masque: 255.255.192.0
+default gateway: 192.168.192.1
+DNS: 8.8.8.8
+
+Dans l'onglet de gauche AD DS -> barre jaune bouton more -> action promote -> add a new forest -> attribuer un nom de domaine (domaine18.xy) -> password (Test1234) -> 
